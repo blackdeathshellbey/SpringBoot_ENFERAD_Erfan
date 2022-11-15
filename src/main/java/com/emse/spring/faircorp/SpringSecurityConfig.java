@@ -16,8 +16,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SpringSecurityConfig {
 
-    private static final String Super_User = "SU";
-    private static final String Normal_User = "PEASANT";
+    private static final String Super_User = "ADMIN";
+    private static final String Normal_User = "USER";
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -46,7 +46,7 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception {
         return http
                 .antMatcher("/api/**")
-                .authorizeRequests(authorize -> authorize.anyRequest().hasAnyRole("SU", "Peasant"))
+                .authorizeRequests(authorize -> authorize.anyRequest().hasAnyRole("ADMIN", "USER"))
                 .formLogin(withDefaults())
                 .csrf().disable()
                 .httpBasic(withDefaults())
@@ -57,7 +57,7 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain3(HttpSecurity http) throws Exception {
         return http
                 .antMatcher("/api/users/**")
-                .authorizeRequests(authorize -> authorize.anyRequest().hasRole("SU"))
+                .authorizeRequests(authorize -> authorize.anyRequest().hasRole("ADMIN"))
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults())
                 .build();
