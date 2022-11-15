@@ -20,22 +20,44 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc()
 public class RoomDaoTest {
-    @Autowired
-    private MockMvc mockMvc;
+/*    @Autowired
+    private MockMvc mockMvc;*/
 
     @Autowired
     private RoomDao roomDao;
 
     @Test
-    @WithMockUser(username = "user", roles = "USER")
-    public void shouldFindARoom() {
+    public void shouldFindARoomWithCorrectTemperature() throws Exception {
         Room room = roomDao.getOne(1L);
         Assertions.assertThat(room.getName()).isEqualTo("Room1");
-        Assertions.assertThat(room.getCurrentTemperature()).isEqualTo(19.1);
+        Assertions.assertThat(room.getCurrentTemperature()).isEqualTo(13.1);
     }
+
+    @Test
+    public void shouldFailOnFindARoomWithCorrectTemperature() throws Exception {
+        Room room = roomDao.getOne(2L);
+        Assertions.assertThat(room.getName()).isEqualTo("Room1");
+        Assertions.assertThat(room.getCurrentTemperature()).isEqualTo(100000.0);
+    }
+
+    @Test
+    public void shouldPassOnFindARoomLevelsCount() throws Exception {
+        Room room = roomDao.getOne(2L);
+        Assertions.assertThat(room.getFloor()).isEqualTo(2);
+    }
+    @Test
+    public void shouldFailOnFindARoomLevelsCount() throws Exception {
+        Room room = roomDao.getOne(2L);
+        Assertions.assertThat(room.getFloor()).isEqualTo(20);
+    }
+
+    @Test
+    public void shouldFailOnFindRoomNameById() throws Exception {
+        Room room = roomDao.getOne(4L);
+        Assertions.assertThat(room.getName()).isEqualTo("Room3");
+    }
+
 /*
     @Test
     @WithMockUser(username = "user", roles = "USER")

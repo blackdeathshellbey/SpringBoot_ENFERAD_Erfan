@@ -9,15 +9,14 @@ import java.util.List;
 public class BuildingDaoCustomImpl implements BuildingDaoCustom {
 
     @PersistenceContext
-    private EntityManager em;
-
+    private EntityManager entityManager;
 
     @Override
     public List<Window> findWindowInBuilding(Long id) {
 
         String jpql = "select w from Window w where w.room.id = :id";
 
-        return em.createQuery(jpql, Window.class)
+        return entityManager.createQuery(jpql, Window.class)
 
                 .setParameter("id", id)
 
