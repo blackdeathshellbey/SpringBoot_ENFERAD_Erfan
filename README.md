@@ -4,6 +4,22 @@
 
 ## API Documentation
 
+Deployed version of the code can be accessed from the below link and can be tested with Swagger of Postman (anything able to send post, get, ... )
+
+https://smartbuilding.cleverapps.io/
+
+Frontend of the representive code can be found on:
+
+https://github.com/blackdeathshellbey/SpringBoot_Frontend
+
+![WhatsApp Image 2022-11-15 at 11 38 55 PM](https://user-images.githubusercontent.com/17174907/204542205-3257ad1d-3a01-4f41-89dd-f633787f7baa.jpeg)
+
+Mobile application of the representive code:
+
+https://github.com/blackdeathshellbey/faircorp_android
+
+![FairCorp execution](https://user-images.githubusercontent.com/17174907/204542727-4cd52872-1f00-49b3-886f-62305cacd834.png)
+
 ## Room
 
 ![room](https://user-images.githubusercontent.com/17174907/201967074-654367e8-5f04-4c45-b35e-6882868acba5.png)
